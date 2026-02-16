@@ -58,7 +58,7 @@ export default function AboutSection() {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-full flex items-center justify-center shadow-2xl"
+                className="absolute inset-0 rounded-full overflow-hidden shadow-2xl ring-4 ring-blue-400 ring-offset-4"
                 animate={{
                   boxShadow: [
                     "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
@@ -72,16 +72,14 @@ export default function AboutSection() {
                   ease: "easeInOut"
                 }}
               >
-                <motion.svg 
-                  className="w-32 h-32 md:w-40 md:h-40 text-white" 
-                  fill="currentColor" 
-                  viewBox="0 0 24 24"
+                <motion.img
+                  src="/images/about-me.jpg"
+                  alt="Profile"
+                  className="w-full h-full object-cover"
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
                   transition={{ delay: 0.8, duration: 0.6 }}
-                >
-                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                </motion.svg>
+                />
               </motion.div>
             </motion.div>
           </motion.div>

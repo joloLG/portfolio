@@ -10,33 +10,33 @@ export default function WorksSection() {
   const sampleWorks = [
     {
       id: 1,
-      title: 'Project Coming Soon',
-      description: 'Exciting project in development',
-      url: '#',
+      title: 'MDRRMO Emergency System',
+      description: 'Hybrid Mobile and Web Application for Emergency Response built with GeoTracking and GeoMapping capabilities',
+      url: 'https://mdrrmo-system.vercel.app',
     },
     {
       id: 2,
-      title: 'Project Coming Soon',
-      description: 'Exciting project in development',
-      url: '#',
+      title: 'Arkie Gas Management',
+      description: 'Web Application for efficient Tracking of Sales and Inventory management',
+      url: 'https://arkie-gas.vercel.app',
     },
     {
       id: 3,
-      title: 'Project Coming Soon',
-      description: 'Exciting project in development',
-      url: '#',
+      title: 'JoloRide Delivery System',
+      description: 'Hybrid Mobile and Web Application for Online Shopping with real-time Geolocation Tracking of Orders and Riders',
+      url: 'https://joloride.vercel.app',
     },
     {
       id: 4,
-      title: 'Project Coming Soon',
-      description: 'Exciting project in development',
-      url: '#',
+      title: 'WeCare Appointment System',
+      description: 'Web Application for sending Appointments with SMS and Email Notification Updates',
+      url: 'https://wecarewebapp.vercel.app/auth/login',
     },
     {
       id: 5,
-      title: 'Project Coming Soon',
-      description: 'Exciting project in development',
-      url: '#',
+      title: 'SorSU DocuReq System',
+      description: 'Web Application for Document Requests with AES Algorithm encryption for secure document handling',
+      url: 'https://sorsu-docureq.vercel.app',
     },
   ];
 
