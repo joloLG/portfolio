@@ -58,7 +58,7 @@ export default function WorksSection() {
       scale: 1,
       transition: {
         duration: 0.5,
-        ease: [0.22, 1, 0.36, 1]
+        ease: [0.22, 1, 0.36, 1] as const
       }
     }
   };
@@ -91,7 +91,7 @@ export default function WorksSection() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {sampleWorks.map((work, index) => (
+          {sampleWorks.map((work) => (
             <motion.div
               key={work.id}
               variants={cardVariants}
