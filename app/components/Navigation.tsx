@@ -2,13 +2,22 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { usePathname, useRouter } from 'next/navigation';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isMusicEnabled, setIsMusicEnabled] = useState(() => {
+    if (typeof window === 'undefined') {
+      return true;
+    }
+
+    return window.localStorage.getItem('jlg-music-enabled') !== 'false';
+  });
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const hasPlayedFromScrollRef = useRef(false);
   const pathname = usePathname();
   const router = useRouter();
   const { scrollY } = useScroll();
@@ -18,13 +27,48 @@ export default function Navigation() {
     ['rgba(9, 9, 11, 0.75)', 'rgba(9, 9, 11, 0.95)']
   );
 
+  const tryPlayMusic = useCallback(() => {
+    const audio = audioRef.current;
+
+    if (!audio || !isMusicEnabled) {
+      return;
+    }
+
+    audio.volume = 0.35;
+    const playPromise = audio.play();
+
+    if (playPromise) {
+      playPromise.catch(() => {
+        // Browsers may block autoplay until a user interaction occurs.
+      });
+    }
+  }, [isMusicEnabled]);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      if (!hasPlayedFromScrollRef.current && isMusicEnabled) {
+        hasPlayedFromScrollRef.current = true;
+        tryPlayMusic();
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isMusicEnabled, tryPlayMusic]);
+
+  useEffect(() => {
+    window.localStorage.setItem('jlg-music-enabled', String(isMusicEnabled));
+
+    if (isMusicEnabled) {
+      tryPlayMusic();
+      return;
+    }
+
+    audioRef.current?.pause();
+    hasPlayedFromScrollRef.current = false;
+  }, [isMusicEnabled, tryPlayMusic]);
 
   const scrollToSection = (sectionId: string) => {
     if (pathname !== '/') {
@@ -38,6 +82,10 @@ export default function Navigation() {
       element.scrollIntoView({ behavior: 'smooth' });
       setIsMenuOpen(false);
     }
+  };
+
+  const toggleMusic = () => {
+    setIsMusicEnabled((previous) => !previous);
   };
 
   return (
@@ -58,7 +106,7 @@ export default function Navigation() {
                 height={34}
                 className="rounded-sm"
               />
-              <span className="text-xl font-bold tracking-wide">JLG DEV Solutions</span>
+              <span className="text-xl font-bold tracking-wide">JLG DEV</span>
             </Link>
           </div>
 
@@ -96,6 +144,22 @@ export default function Navigation() {
               className="text-zinc-300 hover:text-zinc-100 px-3 py-2 text-sm font-medium transition-colors"
             >
               Contact Me
+            </button>
+            <button
+              onClick={toggleMusic}
+              aria-label={isMusicEnabled ? 'Turn off background music' : 'Turn on background music'}
+              className={`inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium transition-colors ${
+                isMusicEnabled
+                  ? 'border-zinc-600 bg-zinc-800/70 text-zinc-100 hover:bg-zinc-700'
+                  : 'border-zinc-700 bg-zinc-900 text-zinc-300 hover:bg-zinc-800'
+              }`}
+            >
+              <span
+                className={`h-2.5 w-2.5 rounded-full ${
+                  isMusicEnabled ? 'bg-emerald-400' : 'bg-zinc-500'
+                }`}
+              />
+              {isMusicEnabled ? 'Music On' : 'Music Off'}
             </button>
           </div>
 
@@ -157,9 +221,27 @@ export default function Navigation() {
             >
               Contact Me
             </button>
+            <button
+              onClick={toggleMusic}
+              className={`block w-full rounded-md border px-3 py-2 text-left text-base font-medium transition-colors ${
+                isMusicEnabled
+                  ? 'border-zinc-600 bg-zinc-800/70 text-zinc-100 hover:bg-zinc-700'
+                  : 'border-zinc-700 bg-zinc-900 text-zinc-300 hover:bg-zinc-800'
+              }`}
+            >
+              {isMusicEnabled ? 'Turn Music Off' : 'Turn Music On'}
+            </button>
           </div>
         </div>
       )}
+
+      <audio
+        ref={audioRef}
+        src="/music/musics.webm"
+        loop
+        autoPlay
+        preload="auto"
+      />
     </motion.nav>
   );
 }

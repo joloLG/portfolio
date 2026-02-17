@@ -13,31 +13,29 @@ export default function WorksSection() {
       title: 'MDRRMO Emergency System',
       description: 'Hybrid Mobile and Web Application for Emergency Response built with GeoTracking and GeoMapping capabilities',
       url: 'https://mdrrmo-system.vercel.app',
+      gifSrc: '/gifs/mdrrmo-app.gif',
     },
     {
       id: 2,
       title: 'Arkie Gas Management',
       description: 'Web Application for efficient Tracking of Sales and Inventory management',
       url: 'https://arkie-gas.vercel.app',
+      gifSrc: '/gifs/arkie-gas.gif',
     },
     {
       id: 3,
       title: 'JoloRide Delivery System',
       description: 'Hybrid Mobile and Web Application for Online Shopping with real-time Geolocation Tracking of Orders and Riders',
       url: 'https://joloride.vercel.app',
+      gifSrc: '/gifs/joloride.gif',
     },
     {
       id: 4,
       title: 'WeCare Appointment System',
       description: 'Web Application for sending Appointments with SMS and Email Notification Updates',
       url: 'https://wecarewebapp.vercel.app/auth/login',
-    },
-    {
-      id: 5,
-      title: 'SorSU DocuReq System',
-      description: 'Web Application for Document Requests with AES Algorithm encryption for secure document handling',
-      url: 'https://sorsu-docureq.vercel.app',
-    },
+      gifSrc: null,
+    }
   ];
 
   const containerVariants = {
@@ -99,28 +97,40 @@ export default function WorksSection() {
               className="bg-zinc-950 rounded-xl border border-zinc-800 shadow-lg shadow-black/40 overflow-hidden group cursor-pointer"
             >
               <motion.div 
-                className="h-64 bg-linear-to-br from-zinc-700 to-zinc-900 flex items-center justify-center relative overflow-hidden"
-                whileHover={{ scale: 1.05 }}
+                className="h-64 bg-zinc-900 relative overflow-hidden"
+                whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.3 }}
               >
-                <motion.div 
-                  className="absolute inset-0 bg-black/30"
-                  whileHover={{ opacity: 0.3 }}
-                  transition={{ duration: 0.3 }}
-                />
-                <motion.svg
-                  className="w-24 h-24 text-zinc-300 group-hover:scale-110 transition-transform duration-300"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                {work.gifSrc ? (
+                  <motion.img
+                    src={work.gifSrc}
+                    alt={`${work.title} GIF preview`}
+                    className="h-full w-full object-cover"
+                    whileHover={{ scale: 1.07 }}
+                    transition={{ duration: 0.3 }}
                   />
-                </motion.svg>
+                ) : (
+                  <div className="h-full w-full bg-linear-to-br from-zinc-700 to-zinc-900 flex flex-col items-center justify-center gap-3">
+                    <motion.svg
+                      className="w-20 h-20 text-zinc-300 group-hover:scale-110 transition-transform duration-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      />
+                    </motion.svg>
+                    <p className="text-xs uppercase tracking-[0.2em] text-zinc-300">Preview coming soon</p>
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
+                <span className="absolute bottom-3 left-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-100">
+                  {work.gifSrc ? 'GIF Preview' : 'No GIF Yet'}
+                </span>
               </motion.div>
               
               <div className="p-6">
