@@ -268,7 +268,7 @@ export default function Navigation() {
 
       <audio
         ref={audioRef}
-        src="/music/musics.webm"
+        src="/music/musics.mp4"
         loop
         autoPlay
         preload="auto"

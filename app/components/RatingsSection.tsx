@@ -292,7 +292,10 @@ export default function RatingsSection() {
             </form>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="rounded-2xl border border-zinc-800 bg-zinc-900 p-6 lg:col-span-3">
+          <motion.div
+            variants={itemVariants}
+            className="rounded-2xl border border-zinc-800 bg-zinc-900 p-6 lg:col-span-3 max-h-168 overflow-hidden"
+          >
             <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
               <h3 className="text-2xl font-semibold text-zinc-100">Recent Feedback</h3>
               <div className="text-sm text-zinc-400">
@@ -300,26 +303,28 @@ export default function RatingsSection() {
               </div>
             </div>
 
-            {isLoading ? (
-              <p className="text-zinc-400">Loading ratings...</p>
-            ) : ratings.length === 0 ? (
-              <p className="text-zinc-400">No feedback yet. Be the first to leave a rating.</p>
-            ) : (
-              <div className="space-y-4">
-                {ratings.map((entry) => (
-                  <article key={entry.id} className="rounded-xl border border-zinc-800 bg-zinc-950 p-4">
-                    <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
-                      <p className="font-semibold text-zinc-100">{entry.name}</p>
-                      <p className="text-amber-300">{'★'.repeat(entry.rating)}{'☆'.repeat(5 - entry.rating)}</p>
-                    </div>
-                    <p className="mb-3 text-zinc-300">{entry.comment}</p>
-                    <p className="text-xs uppercase tracking-[0.15em] text-zinc-500">
-                      {formatTimestamp(entry.created_at)}
-                    </p>
-                  </article>
-                ))}
-              </div>
-            )}
+            <div className="max-h-128 overflow-y-auto pr-1">
+              {isLoading ? (
+                <p className="text-zinc-400">Loading ratings...</p>
+              ) : ratings.length === 0 ? (
+                <p className="text-zinc-400">No feedback yet. Be the first to leave a rating.</p>
+              ) : (
+                <div className="space-y-4">
+                  {ratings.map((entry) => (
+                    <article key={entry.id} className="rounded-xl border border-zinc-800 bg-zinc-950 p-4">
+                      <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+                        <p className="font-semibold text-zinc-100">{entry.name}</p>
+                        <p className="text-amber-300">{'★'.repeat(entry.rating)}{'☆'.repeat(5 - entry.rating)}</p>
+                      </div>
+                      <p className="mb-3 text-zinc-300">{entry.comment}</p>
+                      <p className="text-xs uppercase tracking-[0.15em] text-zinc-500">
+                        {formatTimestamp(entry.created_at)}
+                      </p>
+                    </article>
+                  ))}
+                </div>
+              )}
+            </div>
           </motion.div>
         </div>
       </motion.div>

@@ -3,15 +3,28 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useSearchParams } from 'next/navigation';
+import Image from 'next/image';
 
 const CONTACT_EMAIL = 'johnlloydgracilla2.0@gmail.com';
 const MOBILE_NUMBER_DISPLAY = '+63 XXX XXX XXXX';
 const MOBILE_NUMBER_LINK = 'tel:+63XXXXXXXXXX';
 
 const SOCIAL_LINKS = [
-  { name: 'Facebook', href: 'https://facebook.com/joloLG' },
-  { name: 'Instagram', href: 'https://instagram.com/joloLG' },
-  { name: 'TikTok', href: 'https://www.tiktok.com/@joloLG' },
+  {
+    name: 'Facebook',
+    href: 'https://www.facebook.com/share/182n6sytgz/',
+    iconSrc: '/images/facebook.png',
+  },
+  {
+    name: 'Instagram',
+    href: 'https://www.instagram.com/johnlloydgracilla',
+    iconSrc: '/images/instagram.png',
+  },
+  {
+    name: 'TikTok',
+    href: 'https://www.tiktok.com/@jlgracilla?_r=1&_t=ZS-93zv9FZ8E41',
+    iconSrc: '/images/tiktok.png',
+  },
 ];
 
 function buildPrefillMessage(plan: string, price: string) {
@@ -225,9 +238,18 @@ export default function ContactSection() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-md border border-zinc-700 px-4 py-2 text-sm text-zinc-300 hover:text-white hover:border-zinc-500 hover:bg-zinc-800 transition-colors"
+                    aria-label={link.name}
+                    title={link.name}
+                    className="inline-flex h-12 w-12 items-center justify-center rounded-md border border-zinc-700 bg-zinc-950 p-2 transition-colors hover:border-zinc-500 hover:bg-zinc-800"
                   >
-                    {link.name}
+                    <Image
+                      src={link.iconSrc}
+                      alt={`${link.name} icon`}
+                      width={24}
+                      height={24}
+                      className="h-6 w-6 object-contain"
+                    />
+                    <span className="sr-only">{link.name}</span>
                   </a>
                 ))}
               </div>
