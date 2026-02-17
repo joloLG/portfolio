@@ -30,7 +30,7 @@ export default function AboutSection() {
   };
 
   return (
-    <section id="about" className="min-h-screen flex items-center justify-center bg-white py-20">
+    <section id="about" className="min-h-screen flex items-center justify-center bg-zinc-950 py-20">
       <motion.div 
         ref={ref}
         variants={containerVariants}
@@ -39,11 +39,11 @@ export default function AboutSection() {
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       >
         <motion.div variants={itemVariants} className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-zinc-100 mb-4">
             About Me
           </h2>
           <motion.div 
-            className="w-24 h-1 bg-blue-600 mx-auto"
+            className="w-24 h-1 bg-zinc-400 mx-auto"
             initial={{ width: 0 }}
             animate={isInView ? { width: 96 } : { width: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
@@ -58,11 +58,11 @@ export default function AboutSection() {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <motion.div
-                className="absolute inset-0 rounded-full overflow-hidden shadow-2xl ring-4 ring-blue-400 ring-offset-4"
+                className="absolute inset-0 rounded-full overflow-hidden shadow-2xl ring-4 ring-zinc-500 ring-offset-4 ring-offset-zinc-950"
                 animate={{
                   boxShadow: [
                     "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-                    "0 25px 50px -12px rgba(59, 130, 246, 0.5)",
+                    "0 25px 50px -12px rgba(113, 113, 122, 0.45)",
                     "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
                   ],
                 }}
@@ -86,7 +86,7 @@ export default function AboutSection() {
           
           <motion.div variants={itemVariants} className="space-y-6">
             <motion.p 
-              className="text-lg text-gray-700 leading-relaxed"
+              className="text-lg text-zinc-300 leading-relaxed"
               initial={{ opacity: 0, x: -20 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
               transition={{ delay: 0.6, duration: 0.6 }}
@@ -97,7 +97,7 @@ export default function AboutSection() {
               innovative solutions.
             </motion.p>
             <motion.p 
-              className="text-lg text-gray-700 leading-relaxed"
+              className="text-lg text-zinc-300 leading-relaxed"
               initial={{ opacity: 0, x: -20 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
               transition={{ delay: 0.8, duration: 0.6 }}
@@ -113,34 +113,34 @@ export default function AboutSection() {
               transition={{ delay: 1, duration: 0.6 }}
             >
               <motion.div 
-                className="text-center p-4 bg-blue-50 rounded-lg"
-                whileHover={{ scale: 1.05, backgroundColor: 'rgb(239 246 255)' }}
+                className="text-center p-4 bg-zinc-900 rounded-lg border border-zinc-800"
+                whileHover={{ scale: 1.05, backgroundColor: 'rgb(39 39 42)' }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <motion.div 
-                  className="text-3xl font-bold text-blue-600 mb-2"
+                  className="text-3xl font-bold text-zinc-100 mb-2"
                   initial={{ scale: 0 }}
                   animate={isInView ? { scale: 1 } : { scale: 0 }}
                   transition={{ delay: 1.2, type: "spring", stiffness: 200 }}
                 >
                   5+
                 </motion.div>
-                <div className="text-gray-600">Projects Completed</div>
+                <div className="text-zinc-400">Projects Completed</div>
               </motion.div>
               <motion.div 
-                className="text-center p-4 bg-blue-50 rounded-lg"
-                whileHover={{ scale: 1.05, backgroundColor: 'rgb(239 246 255)' }}
+                className="text-center p-4 bg-zinc-900 rounded-lg border border-zinc-800"
+                whileHover={{ scale: 1.05, backgroundColor: 'rgb(39 39 42)' }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <motion.div 
-                  className="text-3xl font-bold text-blue-600 mb-2"
+                  className="text-3xl font-bold text-zinc-100 mb-2"
                   initial={{ scale: 0 }}
                   animate={isInView ? { scale: 1 } : { scale: 0 }}
                   transition={{ delay: 1.4, type: "spring", stiffness: 200 }}
                 >
                   100%
                 </motion.div>
-                <div className="text-gray-600">Client Satisfaction</div>
+                <div className="text-zinc-400">Client Satisfaction</div>
               </motion.div>
             </motion.div>
           </motion.div>

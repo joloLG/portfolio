@@ -64,7 +64,7 @@ export default function WorksSection() {
   };
 
   return (
-    <section id="works" className="min-h-screen flex items-center justify-center bg-gray-50 py-20">
+    <section id="works" className="min-h-screen flex items-center justify-center bg-zinc-900 py-20">
       <motion.div 
         ref={ref}
         variants={containerVariants}
@@ -76,16 +76,16 @@ export default function WorksSection() {
           variants={cardVariants}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-zinc-100 mb-4">
             My Works
           </h2>
           <motion.div 
-            className="w-24 h-1 bg-blue-600 mx-auto mb-4"
+            className="w-24 h-1 bg-zinc-400 mx-auto mb-4"
             initial={{ width: 0 }}
             animate={isInView ? { width: 96 } : { width: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           />
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-zinc-400 max-w-2xl mx-auto">
             Explore my portfolio of completed projects and applications
           </p>
         </motion.div>
@@ -96,20 +96,20 @@ export default function WorksSection() {
               key={work.id}
               variants={cardVariants}
               whileHover={{ y: -10, transition: { duration: 0.3 } }}
-              className="bg-white rounded-xl shadow-lg overflow-hidden group cursor-pointer"
+              className="bg-zinc-950 rounded-xl border border-zinc-800 shadow-lg shadow-black/40 overflow-hidden group cursor-pointer"
             >
               <motion.div 
-                className="h-64 bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center relative overflow-hidden"
+                className="h-64 bg-linear-to-br from-zinc-700 to-zinc-900 flex items-center justify-center relative overflow-hidden"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
                 <motion.div 
-                  className="absolute inset-0 bg-black/10"
+                  className="absolute inset-0 bg-black/30"
                   whileHover={{ opacity: 0.3 }}
                   transition={{ duration: 0.3 }}
                 />
                 <motion.svg
-                  className="w-24 h-24 text-white/80 group-hover:scale-110 transition-transform duration-300"
+                  className="w-24 h-24 text-zinc-300 group-hover:scale-110 transition-transform duration-300"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -125,7 +125,7 @@ export default function WorksSection() {
               
               <div className="p-6">
                 <motion.h3 
-                  className="text-xl font-bold text-gray-900 mb-2"
+                  className="text-xl font-bold text-zinc-100 mb-2"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.2 }}
@@ -133,7 +133,7 @@ export default function WorksSection() {
                   {work.title}
                 </motion.h3>
                 <motion.p 
-                  className="text-gray-600 mb-4"
+                  className="text-zinc-400 mb-4"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
@@ -144,7 +144,7 @@ export default function WorksSection() {
                   href={work.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium group/link"
+                  className="inline-flex items-center text-zinc-200 hover:text-white font-medium group/link"
                   whileHover={{ x: 5 }}
                   transition={{ duration: 0.2 }}
                 >

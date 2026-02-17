@@ -49,15 +49,15 @@ export default function HeroSection() {
     <section 
       ref={ref}
       id="home" 
-      className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 pt-16 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center bg-linear-to-br from-zinc-950 via-zinc-900 to-zinc-950 pt-16 overflow-hidden"
     >
       <motion.div 
         style={{ y, opacity }}
         className="absolute inset-0 z-0"
       >
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-        <div className="absolute top-40 right-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-zinc-700 rounded-full filter blur-xl opacity-30 animate-blob"></div>
+        <div className="absolute top-40 right-10 w-72 h-72 bg-zinc-600 rounded-full filter blur-xl opacity-25 animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-zinc-500 rounded-full filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
       </motion.div>
 
       <motion.div 
@@ -72,7 +72,7 @@ export default function HeroSection() {
             className="mb-6"
           >
             <motion.h1 
-              className="text-5xl md:text-7xl lg:text-8xl font-bold text-gray-900 mb-4"
+              className="text-5xl md:text-7xl lg:text-8xl font-bold text-zinc-100 mb-4"
             >
               <motion.span
                 className="inline-block"
@@ -85,7 +85,7 @@ export default function HeroSection() {
                   repeatType: "reverse"
                 }}
                 style={{
-                  backgroundImage: 'linear-gradient(90deg, #1e40af, #7c3aed, #db2777, #1e40af)',
+                  backgroundImage: 'linear-gradient(90deg, #fafafa, #d4d4d8, #71717a, #fafafa)',
                   backgroundSize: '200% auto',
                   WebkitBackgroundClip: 'text',
                   backgroundClip: 'text',
@@ -96,7 +96,7 @@ export default function HeroSection() {
               </motion.span>
               <br />
               <motion.span
-                className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600"
+                className="inline-block bg-clip-text text-transparent bg-linear-to-r from-zinc-100 to-zinc-400"
                 animate={floatingAnimation}
               >
                 My Portfolio
@@ -106,7 +106,7 @@ export default function HeroSection() {
 
           <motion.p 
             variants={itemVariants}
-            className="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto"
+            className="text-xl md:text-2xl text-zinc-300 mb-8 max-w-3xl mx-auto"
           >
             I&apos;m a John Lloyd Gracilla, a passionate developer creating stunning web applications and innovative solutions
           </motion.p>
@@ -119,10 +119,10 @@ export default function HeroSection() {
               whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)" }}
               whileTap={{ scale: 0.95 }}
               onClick={() => document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' })}
-              className="group relative px-8 py-3 bg-blue-600 text-white rounded-lg font-medium overflow-hidden shadow-lg"
+              className="group relative px-8 py-3 bg-zinc-100 text-zinc-900 rounded-lg font-medium overflow-hidden shadow-lg shadow-black/40"
             >
               <motion.span
-                className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600"
+                className="absolute inset-0 bg-linear-to-r from-zinc-200 to-white"
                 initial={{ x: '-100%' }}
                 whileHover={{ x: 0 }}
                 transition={{ duration: 0.3 }}
@@ -131,10 +131,10 @@ export default function HeroSection() {
             </motion.button>
 
             <motion.button
-              whileHover={{ scale: 1.05, borderColor: '#7c3aed' }}
+              whileHover={{ scale: 1.05, borderColor: '#a1a1aa' }}
               whileTap={{ scale: 0.95 }}
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="px-8 py-3 bg-white text-blue-600 rounded-lg font-medium transition-colors shadow-lg border-2 border-blue-600 hover:bg-blue-50"
+              className="px-8 py-3 bg-zinc-900 text-zinc-100 rounded-lg font-medium transition-colors shadow-lg shadow-black/40 border-2 border-zinc-600 hover:bg-zinc-800"
             >
               Get In Touch
             </motion.button>
@@ -155,7 +155,7 @@ export default function HeroSection() {
                   repeat: Infinity,
                   delay: i * 0.2,
                 }}
-                className="w-2 h-2 bg-blue-600 rounded-full"
+                className="w-2 h-2 bg-zinc-400 rounded-full"
               />
             ))}
           </motion.div>
@@ -171,12 +171,12 @@ export default function HeroSection() {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center"
+          className="w-6 h-10 border-2 border-zinc-500 rounded-full flex justify-center"
         >
           <motion.div
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-1 h-3 bg-gray-400 rounded-full mt-2"
+            className="w-1 h-3 bg-zinc-500 rounded-full mt-2"
           />
         </motion.div>
       </motion.div>

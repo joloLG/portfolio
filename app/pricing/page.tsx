@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Navigation from '../components/Navigation';
 
 export default function PricingPage() {
   const pricingTiers = [
@@ -46,32 +47,23 @@ export default function PricingPage() {
     },
   ];
 
+  const getContactHref = (name: string, price: string) => {
+    const params = new URLSearchParams({ plan: name, price });
+    return `/?${params.toString()}#contact`;
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="text-2xl font-bold text-gray-900">
-              Portfolio
-            </Link>
-            <Link
-              href="/"
-              className="text-gray-700 hover:text-blue-600 px-4 py-2 text-sm font-medium transition-colors"
-            >
-              ← Back to Home
-            </Link>
-          </div>
-        </div>
-      </nav>
+    <div className="min-h-screen bg-zinc-950">
+      <Navigation />
 
       <main className="pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-zinc-100 mb-4">
               Price Range
             </h1>
-            <div className="w-24 h-1 bg-blue-600 mx-auto mb-4"></div>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <div className="w-24 h-1 bg-zinc-400 mx-auto mb-4"></div>
+            <p className="text-lg text-zinc-400 max-w-2xl mx-auto">
               Transparent pricing for quality web development services. All prices are in Philippine Peso (₱)
             </p>
           </div>
@@ -80,30 +72,30 @@ export default function PricingPage() {
             {pricingTiers.map((tier, index) => (
               <div
                 key={index}
-                className={`bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden ${
-                  tier.popular ? 'ring-2 ring-blue-600 transform scale-105' : ''
+                className={`bg-zinc-900 rounded-2xl border border-zinc-800 shadow-lg shadow-black/40 hover:shadow-2xl hover:shadow-black/50 transition-all duration-300 overflow-hidden ${
+                  tier.popular ? 'ring-2 ring-zinc-500 transform scale-105' : ''
                 }`}
               >
                 {tier.popular && (
-                  <div className="bg-blue-600 text-white text-center py-2 px-4 text-sm font-semibold">
+                  <div className="bg-zinc-200 text-zinc-900 text-center py-2 px-4 text-sm font-semibold">
                     Most Popular
                   </div>
                 )}
                 <div className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  <h3 className="text-2xl font-bold text-zinc-100 mb-2">
                     {tier.name}
                   </h3>
-                  <div className="text-3xl font-bold text-blue-600 mb-4">
+                  <div className="text-3xl font-bold text-zinc-200 mb-4">
                     {tier.price}
                   </div>
-                  <p className="text-gray-600 mb-6">
+                  <p className="text-zinc-400 mb-6">
                     {tier.description}
                   </p>
                   <ul className="space-y-3 mb-8">
                     {tier.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start">
                         <svg
-                          className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0"
+                          className="w-5 h-5 text-zinc-300 mr-3 mt-0.5 shrink-0"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -115,16 +107,16 @@ export default function PricingPage() {
                             d="M5 13l4 4L19 7"
                           />
                         </svg>
-                        <span className="text-gray-700">{feature}</span>
+                        <span className="text-zinc-300">{feature}</span>
                       </li>
                     ))}
                   </ul>
                   <Link
-                    href="/#contact"
+                    href={getContactHref(tier.name, tier.price)}
                     className={`block w-full text-center px-6 py-3 rounded-lg font-medium transition-colors ${
                       tier.popular
-                        ? 'bg-blue-600 text-white hover:bg-blue-700'
-                        : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+                        ? 'bg-zinc-100 text-zinc-900 hover:bg-zinc-200'
+                        : 'bg-zinc-800 text-zinc-100 hover:bg-zinc-700'
                     }`}
                   >
                     Get Started
@@ -134,19 +126,19 @@ export default function PricingPage() {
             ))}
           </div>
 
-          <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
+          <div className="bg-zinc-900 rounded-2xl border border-zinc-800 shadow-lg shadow-black/40 p-8 md:p-12">
+            <h2 className="text-3xl font-bold text-zinc-100 mb-6 text-center">
               Additional Information
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                  <svg className="w-6 h-6 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <h3 className="text-xl font-semibold text-zinc-100 mb-4 flex items-center">
+                  <svg className="w-6 h-6 text-zinc-300 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   What&apos;s Included
                 </h3>
-                <ul className="space-y-2 text-gray-700">
+                <ul className="space-y-2 text-zinc-300">
                   <li>• Clean, modern design</li>
                   <li>• Fully responsive layout</li>
                   <li>• Cross-browser compatibility</li>
@@ -155,13 +147,13 @@ export default function PricingPage() {
                 </ul>
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                  <svg className="w-6 h-6 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <h3 className="text-xl font-semibold text-zinc-100 mb-4 flex items-center">
+                  <svg className="w-6 h-6 text-zinc-300 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   Timeline
                 </h3>
-                <ul className="space-y-2 text-gray-700">
+                <ul className="space-y-2 text-zinc-300">
                   <li>• Basic: 1-2 weeks</li>
                   <li>• Professional: 3-4 weeks</li>
                   <li>• Enterprise: 6-8 weeks+</li>
@@ -171,12 +163,12 @@ export default function PricingPage() {
               </div>
             </div>
             <div className="mt-8 text-center">
-              <p className="text-gray-600 mb-4">
+              <p className="text-zinc-400 mb-4">
                 Have a custom project in mind? Let&apos;s discuss your specific requirements and get a personalized quote.
               </p>
               <Link
-                href="/#contact"
-                className="inline-block px-8 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl"
+                href={getContactHref('Custom Project Quote', 'To Be Discussed')}
+                className="inline-block px-8 py-3 bg-zinc-100 text-zinc-900 rounded-lg font-medium hover:bg-zinc-200 transition-colors shadow-lg shadow-black/40"
               >
                 Contact Me for Custom Quote
               </Link>
@@ -185,9 +177,9 @@ export default function PricingPage() {
         </div>
       </main>
 
-      <footer className="bg-gray-900 text-white py-8">
+      <footer className="bg-zinc-900 text-white py-8 border-t border-zinc-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-gray-400">
+          <p className="text-zinc-400">
             © {new Date().getFullYear()} Portfolio. All rights reserved.
           </p>
         </div>

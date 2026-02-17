@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "My Portfolio - Professional Web Developer",
+  title: "JLG-DEV Solution",
   description: "Professional portfolio showcasing web development projects, services, and pricing in the Philippines",
 };
 
