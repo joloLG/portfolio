@@ -9,15 +9,9 @@ import { usePathname, useRouter } from 'next/navigation';
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isMusicEnabled, setIsMusicEnabled] = useState(() => {
-    if (typeof window === 'undefined') {
-      return true;
-    }
-
-    return window.localStorage.getItem('jlg-music-enabled') !== 'false';
-  });
+  const [isMusicEnabled, setIsMusicEnabled] = useState(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const hasPlayedFromScrollRef = useRef(false);
+  const hasPlaybackStartedRef = useRef(false);
   const pathname = usePathname();
   const router = useRouter();
   const { scrollY } = useScroll();
@@ -38,9 +32,13 @@ export default function Navigation() {
     const playPromise = audio.play();
 
     if (playPromise) {
-      playPromise.catch(() => {
-        // Browsers may block autoplay until a user interaction occurs.
-      });
+      playPromise
+        .then(() => {
+          hasPlaybackStartedRef.current = true;
+        })
+        .catch(() => {
+          // Browsers may block autoplay until a user interaction occurs.
+        });
     }
   }, [isMusicEnabled]);
 
@@ -48,27 +46,48 @@ export default function Navigation() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      if (!hasPlayedFromScrollRef.current && isMusicEnabled) {
-        hasPlayedFromScrollRef.current = true;
+      if (!hasPlaybackStartedRef.current) {
         tryPlayMusic();
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isMusicEnabled, tryPlayMusic]);
+  }, [tryPlayMusic]);
 
   useEffect(() => {
-    window.localStorage.setItem('jlg-music-enabled', String(isMusicEnabled));
-
     if (isMusicEnabled) {
       tryPlayMusic();
       return;
     }
 
-    audioRef.current?.pause();
-    hasPlayedFromScrollRef.current = false;
+    const audio = audioRef.current;
+
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+
+    hasPlaybackStartedRef.current = false;
   }, [isMusicEnabled, tryPlayMusic]);
+
+  useEffect(() => {
+    const playOnInteraction = () => {
+      if (!hasPlaybackStartedRef.current) {
+        tryPlayMusic();
+      }
+    };
+
+    window.addEventListener('pointerdown', playOnInteraction);
+    window.addEventListener('touchstart', playOnInteraction, { passive: true });
+    window.addEventListener('keydown', playOnInteraction);
+
+    return () => {
+      window.removeEventListener('pointerdown', playOnInteraction);
+      window.removeEventListener('touchstart', playOnInteraction);
+      window.removeEventListener('keydown', playOnInteraction);
+    };
+  }, [tryPlayMusic]);
 
   const scrollToSection = (sectionId: string) => {
     if (pathname !== '/') {
@@ -128,6 +147,12 @@ export default function Navigation() {
               className="text-zinc-300 hover:text-zinc-100 px-3 py-2 text-sm font-medium transition-colors"
             >
               My Works
+            </button>
+            <button
+              onClick={() => scrollToSection('ratings')}
+              className="text-zinc-300 hover:text-zinc-100 px-3 py-2 text-sm font-medium transition-colors"
+            >
+              Ratings
             </button>
             <Link
               href="/pricing"
@@ -203,6 +228,12 @@ export default function Navigation() {
               className="text-zinc-300 hover:text-zinc-100 hover:bg-zinc-900 block px-3 py-2 rounded-md text-base font-medium w-full text-left"
             >
               My Works
+            </button>
+            <button
+              onClick={() => scrollToSection('ratings')}
+              className="text-zinc-300 hover:text-zinc-100 hover:bg-zinc-900 block px-3 py-2 rounded-md text-base font-medium w-full text-left"
+            >
+              Ratings
             </button>
             <Link
               href="/pricing"

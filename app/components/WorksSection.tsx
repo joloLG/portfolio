@@ -31,7 +31,7 @@ export default function WorksSection() {
     },
     {
       id: 4,
-      title: 'WeCare Appointment System',
+      title: 'Appointment Management System',
       description: 'Web Application for sending Appointments with SMS and Email Notification Updates',
       url: 'https://wecarewebapp.vercel.app/auth/login',
       gifSrc: null,

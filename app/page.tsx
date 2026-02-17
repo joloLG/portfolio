@@ -2,6 +2,7 @@ import Navigation from './components/Navigation';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
 import WorksSection from './components/WorksSection';
+import RatingsSection from './components/RatingsSection';
 import ContactSection from './components/ContactSection';
 import { Suspense } from 'react';
 
@@ -13,6 +14,7 @@ export default function Home() {
         <HeroSection />
         <AboutSection />
         <WorksSection />
+        <RatingsSection />
         <Suspense fallback={null}>
           <ContactSection />
         </Suspense>
